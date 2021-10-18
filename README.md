@@ -1,6 +1,6 @@
 # nomadcoffee-native
 
-1. Setting
+1. Setting (2021-10-18)
    - react-native = 0.63.0
    - expo = 42.0.1
    - install info
