@@ -4,12 +4,12 @@ import { FlatList, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Photo from "../components/Photo";
 import ScreenLayout from "../components/ScreenLayout";
-import { COMMENT_FRAGMENT, PHOTO_FRAGMENT } from "../fragments";
+import { COMMENT_FRAGMENT, FEED_PHOTO } from "../fragments";
 
 const FEED_QUERY = gql`
-  query seeFeed($offset: Int!) {
-    seeFeed(offset: $offset) {
-      ...PhotoFragment
+  query seeCoffeeShops($offset: Int!) {
+    seeCoffeeShops(offset: $offset) {
+      ...FeedPhoto
       user {
         id
         username
@@ -23,7 +23,7 @@ const FEED_QUERY = gql`
       isMine
     }
   }
-  ${PHOTO_FRAGMENT}
+  ${FEED_PHOTO}
   ${COMMENT_FRAGMENT}
 `;
 
@@ -62,7 +62,7 @@ export default function Feed({ navigation }) {
         onEndReached={() =>
           fetchMore({
             variables: {
-              offset: data?.seeFeed?.length,
+              offset: data?.seeCoffeeShops?.length,
             },
           })
         }
@@ -70,8 +70,8 @@ export default function Feed({ navigation }) {
         onRefresh={refresh}
         style={{ width: "100%" }}
         showsVerticalScrollIndicator={false}
-        data={data?.seeFeed}
-        keyExtractor={photo => "" + photo.id}
+        data={data?.seeCoffeeShops}
+        keyExtractor={coffee => "" + coffee.id}
         renderItem={renderPhoto}
       />
     </ScreenLayout>

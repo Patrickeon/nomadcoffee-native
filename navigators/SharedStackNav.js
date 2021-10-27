@@ -29,7 +29,7 @@ export default function StackNavFactory({ screenName }) {
         },
       }}
     >
-      {screenName === "Feed" ? (
+      {screenName === "Home" ? (
         <Stack.Screen
           name={"Feed"}
           component={Feed}

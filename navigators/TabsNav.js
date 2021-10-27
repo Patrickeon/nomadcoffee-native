@@ -21,7 +21,7 @@ export default function TabsNav() {
       }}
     >
       <Tabs.Screen
-        name="Feed"
+        name="Home"
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <TabIcon iconName={"home"} color={color} focused={focused} />
@@ -30,7 +30,7 @@ export default function TabsNav() {
           shadowOpacity: 0,
         }}
       >
-        {() => <StackNavFactory screenName="Feed" />}
+        {() => <StackNavFactory screenName="Home" />}
       </Tabs.Screen>
 
       <Tabs.Screen

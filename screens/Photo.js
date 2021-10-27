@@ -4,12 +4,12 @@ import { RefreshControl, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Photo from "../components/Photo";
 import ScreenLayout from "../components/ScreenLayout";
-import { PHOTO_FRAGMENT } from "../fragments";
+import { FEED_PHOTO } from "../fragments";
 
-const SEE_PHOTO = gql`
-  query seePhoto($id: Int!) {
-    seePhoto(id: $id) {
-      ...PhotoFragment
+const SEE_COFFEE = gql`
+  query seeCoffeeShop($id: Int!) {
+    seeCoffeeShop(id: $id) {
+      ...FeedPhoto
       user {
         id
         username
@@ -18,13 +18,13 @@ const SEE_PHOTO = gql`
       caption
     }
   }
-  ${PHOTO_FRAGMENT}
+  ${FEED_PHOTO}
 `;
 
 export default function PhotoScreen({ route }) {
-  const { data, loading, refetch } = useQuery(SEE_PHOTO, {
+  const { data, loading, refetch } = useQuery(SEE_COFFEE, {
     variables: {
-      id: route?.params?.photoId,
+      id: route?.params?.id,
     },
   });
   const [refreshing, setRefreshing] = useState();
@@ -42,12 +42,11 @@ export default function PhotoScreen({ route }) {
         style={{ backgroundColor: "black" }}
         contentContainerStyle={{
           backgroundColor: "black",
-
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <Photo {...data?.seePhoto} />
+        <Photo {...data?.seeCoffeeShop} />
       </ScrollView>
     </ScreenLayout>
   );

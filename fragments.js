@@ -1,10 +1,10 @@
 import { gql } from "@apollo/client";
 
 export const PHOTO_FRAGMENT = gql`
-  fragment PhotoFragment on Photo {
+  fragment PhotoFragment on CoffeShopPhoto {
     id
-    file
-    likes
+    url
+    shopId
     commentNumber
     isLiked
   }
@@ -38,13 +38,17 @@ export const USER_FRAGMENT = gql`
 `;
 
 export const FEED_PHOTO = gql`
-  fragment FeedPhoto on Photo {
-    ...PhotoFragment
+  fragment FeedPhoto on CoffeeShop {
+    photos {
+      ...PhotoFragment
+    }
     user {
       id
       username
       avatar
     }
+    latitude
+    longitude
     caption
     createdAt
     isMine
