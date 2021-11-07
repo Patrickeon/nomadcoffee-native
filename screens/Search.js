@@ -88,18 +88,23 @@ export default function Search({ navigation }) {
     });
   }, []);
 
-  const renderItem = ({ item: photo }) => (
+  const renderItem = ({ item: shop }) => (
     <TouchableOpacity
       onPress={() =>
         navigation.navigate("Photo", {
-          photoId: photo.id,
+          shopId: photo.id,
         })
       }
     >
-      <Image
-        source={{ uri: photo.file }}
-        style={{ width: width / numColumns, height: 100 }}
-      />
+      {shop?.photos?.maps(photo => {
+        let result = null;
+        result.push(
+          <Image
+            source={{ uri: photo }}
+            style={{ width: width / numColumns, height: 100 }}
+          />
+        );
+      })}
     </TouchableOpacity>
   );
 
